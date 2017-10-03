@@ -22,15 +22,16 @@ cookbook_file '/etc/init.d/prometheus' do
   source 'prometheus-initd-ubuntu'
   mode '0755'
   action :create
+  notifies :restart, "service[prometheus]", :delayed
 end
 
 cookbook_file '/opt/prometheus/prometheus.yml' do
   source 'prometheus.yml'
   mode '0755'
   action :create
-  notifies :restart, "service[promotheus]", :delayed
+  notifies :restart, "service[prometheus]", :delayed
 end
 
-service "promotheus" do
+service "prometheus" do
   action :start
 end
