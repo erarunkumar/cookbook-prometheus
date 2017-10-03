@@ -24,7 +24,7 @@ cookbook_file '/etc/init.d/prometheus' do
   action :create
 end
 
-cookbook_file '/opt/prometheus/prometheus/prometheus.yml' do
+cookbook_file '/opt/prometheus/prometheus.yml' do
   source 'prometheus.yml'
   mode '0755'
   action :create
@@ -34,4 +34,3 @@ end
 service "promotheus" do
   action :start
 end
-
