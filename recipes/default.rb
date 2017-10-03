@@ -18,13 +18,20 @@ execute 'untar prometheus' do
   not_if { File.exists?("/opt/prometheus") }
 end 
 
-cookbook_file '/etc/init/promotheus.conf' do
-  source 'promotheus.conf'
+cookbook_file '/etc/init.d/prometheus' do
+  source 'prometheus-initd-ubuntu'
   mode '0755'
   action :create
 end
 
+cookbook_file '/opt/prometheus/prometheus/prometheus.yml' do
+  source 'prometheus.yml'
+  mode '0755'
+  action :create
+  notifies :restart, "service[promotheus]", :delayed
+end
+
 service "promotheus" do
-  action :restart
+  action :start
 end
 
