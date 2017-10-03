@@ -1,0 +1,79 @@
+#! /usr/bin/env bash
+
+### BEGIN INIT INFO
+# Provides:          prometheus
+# Required-Start:    $all
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Monitoring system and time series database
+### END INIT INFO
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+NAME=prometheus
+DESC="Prometheus Server"
+DEFAULT=/etc/default/$NAME
+
+USER=root
+GROUP=root
+HOME=/root
+LOGFILE=/var/log/$NAME
+PIDFILE=/var/run/$NAME.pid
+
+DEAMON=/opt/prometheus/prometheus
+DEAMON_ARGS="-web.listen-address 0.0.0.0:9090 -config.file=/opt/prometheus/prometheus.yml"
+
+
+umask 0027
+
+if [ ! -x $DAEMON ]; then
+  echo "Program not installed or not executable"
+  exit 5
+fi
+
+. /lib/lsb/init-functions
+
+if [ -r /etc/default/rcS ]; then
+	. /etc/default/rcS
+fi
+
+# overwrite settings from default file
+if [ -f "$DEFAULT" ]; then
+	. "$DEFAULT"
+fi
+
+case "$1" in
+  start)
+	log_daemon_msg "Starting $DESC"
+
+	pid=`pidofproc -p $PIDFILE prometheus`
+	if [ -n "$pid" ] ; then
+		log_begin_msg "Already running."
+		log_end_msg 0
+		exit 0
+	fi
+	
+	start-stop-daemon -c $USER -C --background --start --pidfile $PIDFILE --make-pidfile -d "$HOME" --exec $DEAMON -- $DEAMON_ARGS >> $LOGFILE 2>&1
+	log_end_msg 0
+	
+	;;
+  stop)
+	log_daemon_msg "Stopping $DESC"
+	start-stop-daemon -c $USER --stop --oknodo --pidfile $PIDFILE --retry 5
+	log_end_msg 0
+	;;
+  status)
+	status_of_proc -p $PIDFILE prometheus prometheus && exit 0 || exit $?
+    ;;
+  restart|force-reload)
+	if [ -f "$PIDFILE" ]; then
+		$0 stop
+		sleep 1
+	fi
+	$0 start
+	;;
+  *)
+	log_success_msg "Usage: $0 {start|stop|restart|force-reload|status}"
+	exit 3
+	;;
+esac
