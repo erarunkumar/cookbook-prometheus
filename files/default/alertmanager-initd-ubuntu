@@ -21,7 +21,7 @@ LOGFILE=/var/log/$NAME
 PIDFILE=/var/run/$NAME.pid
 
 DEAMON=/opt/alertmanager/alertmanager
-DEAMON_ARGS="-web.listen-address 0.0.0.0:9090 -config.file=/opt/alertmanager/alertmanager.yml"
+DEAMON_ARGS="-web.listen-address 0.0.0.0:8989 -config.file=/opt/alertmanager/alertmanager.yml"
 
 
 umask 0027
