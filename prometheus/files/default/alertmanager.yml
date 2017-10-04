@@ -9,6 +9,18 @@ global:
   # Alternative host for Hipchat.
   hipchat_url: 'https://hipchat.foobar.org/'
 
+  slack_api_url: '<slack_webhook_url>'
+
+route:
+  receiver: 'slack-notifications'
+  # All alerts in a notification have the same value for these labels.
+  group_by: [alertname, datacenter, app]
+
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#alerts'
+
 # The directory from which notification templates are read.
 templates: 
 - '/etc/alertmanager/template/*.tmpl'
@@ -18,7 +30,7 @@ route:
   # The labels by which incoming alerts are grouped together. For example,
   # multiple alerts coming in for cluster=A and alertname=LatencyHigh would
   # be batched into a single group.
-  group_by: ['alertname', 'cluster', 'service']
+  group_by: ['alertname', 'cluster', 'service', alertname, datacenter, app]
 
   # When a new group of alerts is created by an incoming alert, wait at
   # least 'group_wait' to send the initial notification.
@@ -36,8 +48,8 @@ route:
   repeat_interval: 3h 
 
   # A default receiver
-  receiver: team-X-mails
-
+  #receiver: team-X-mails
+  receiver: 'slack-notifications'
   # All the above attributes are inherited by all child routes and can 
   # overwritten on each.
 
@@ -121,3 +133,6 @@ receivers:
     room_id: 85
     message_format: html
     notify: true
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#alerts'
