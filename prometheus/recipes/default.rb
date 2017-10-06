@@ -37,6 +37,13 @@ cookbook_file '/opt/prometheus/prometheus.yml' do
   notifies :restart, "service[prometheus]", :delayed
 end
 
+cookbook_file '/opt/prometheus/alert.rules' do
+  source 'alert.rules'
+  mode '0755'
+  action :create
+end
+
+
 service "prometheus" do
   action :start
 
