@@ -31,6 +31,11 @@ scrape_configs:
     #scrape_interval: 10s
     static_configs:
       - targets: ['192.168.1.16:9999']
+  - job_name: 'promserver'
+    static_configs:
+      - targets: ['localhost:9100']
+
+
 alerting:
   alertmanagers:
   - scheme: http
