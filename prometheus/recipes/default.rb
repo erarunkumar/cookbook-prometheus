@@ -39,4 +39,4 @@ end
 
 service "prometheus" do
   action :start
-end
+
