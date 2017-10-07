@@ -1,6 +1,6 @@
 #
-# Cookbook:: prometheus_wrapper
-# Recipe:: default
+# Cookbook:: prometheus
+# Recipe:: alertmanager
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 

@@ -1,5 +1,5 @@
 #
-# Cookbook:: prometheus_wrapper
+# Cookbook:: prometheus
 # Recipe:: default
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
@@ -19,7 +19,6 @@ end
 
 execute 'untar prometheus' do
   command 'tar -xzf /tmp/prometheus-1.7.2.linux-amd64.tar.gz -C /opt; ln -s /opt/prometheus-1.7.2.linux-amd64 /opt/prometheus'
-  #cwd '/root/Downloads/'
   not_if { File.exists?("/opt/prometheus") }
 end 
 
