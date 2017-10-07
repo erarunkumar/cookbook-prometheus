@@ -1,0 +1,8 @@
+ALERT InstanceDown
+  IF rabbitmq_up == 0
+  FOR 1m
+  LABELS { severity = "page" }
+  ANNOTATIONS {
+    summary = "RabbitMQ down",
+    description = "rabbitMQ has been down for more than 1 minutes.",
+}

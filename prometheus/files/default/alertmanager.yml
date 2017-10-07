@@ -11,15 +11,13 @@ global:
 
   slack_api_url: '<slack_webhook_url>'
 
-route:
-  receiver: 'slack-notifications'
-  # All alerts in a notification have the same value for these labels.
-  group_by: [alertname, datacenter, app]
 
-receivers:
-- name: 'slack-notifications'
-  slack_configs:
-  - channel: '#alerts'
+#  smtp_smarthost: 'smtp.gmail.com:587'
+#  smtp_from: 'example@opstree.com'
+#  smtp_auth_username: 'example@opstree.com'
+# smtp_auth_password: '************'
+
+
 
 # The directory from which notification templates are read.
 templates: 
@@ -30,7 +28,7 @@ route:
   # The labels by which incoming alerts are grouped together. For example,
   # multiple alerts coming in for cluster=A and alertname=LatencyHigh would
   # be batched into a single group.
-  group_by: ['alertname', 'cluster', 'service', alertname, datacenter, app]
+  group_by: ['alertname', 'cluster', 'service']
 
   # When a new group of alerts is created by an incoming alert, wait at
   # least 'group_wait' to send the initial notification.
@@ -48,8 +46,8 @@ route:
   repeat_interval: 3h 
 
   # A default receiver
-  #receiver: team-X-mails
-  receiver: 'slack-notifications'
+  receiver: team-X-mails
+
   # All the above attributes are inherited by all child routes and can 
   # overwritten on each.
 
@@ -108,7 +106,7 @@ inhibit_rules:
 receivers:
 - name: 'team-X-mails'
   email_configs:
-  - to: 'team-X+alerts@example.org'
+   - to: 'someone@opstree.com'
 
 - name: 'team-X-pager'
   email_configs:
@@ -118,7 +116,7 @@ receivers:
 
 - name: 'team-Y-mails'
   email_configs:
-  - to: 'team-Y+alerts@example.org'
+  - to: 'team-Y+alerts@example.or'
 
 - name: 'team-Y-pager'
   pagerduty_configs:
@@ -133,6 +131,3 @@ receivers:
     room_id: 85
     message_format: html
     notify: true
-- name: 'slack-notifications'
-  slack_configs:
-  - channel: '#alerts'

@@ -29,6 +29,11 @@ cookbook_file '/etc/init.d/alertmanager' do
   notifies :restart, "service[alertmanager]", :delayed
 end
 
+file '/opt/alertmanager/alertmanager.yml' do
+  action :delete
+  only_if { File.exist? '/opt/alertmanager/alertmanager.yml' }
+end
+
 cookbook_file '/opt/alertmanager/alertmanager.yml' do
   source 'alertmanager.yml'
   mode '0755'
