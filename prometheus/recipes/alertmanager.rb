@@ -4,13 +4,6 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
-#remote_file 'Prometheus_download' do
-#  path '/tmp/alertmanager-0.9.1.linux-amd64.tar.gz'
-#  source 'https://github.com/prometheus/alertmanager/releases/download/v0.9.1/alertmanager-0.9.1.linux-amd64.tar.gz'
-#  mode '0755'
-#  action :create
-#end
-
 cookbook_file '/tmp/alertmanager-0.9.1.linux-amd64.tar.gz' do
   source 'alertmanager-0.9.1.linux-amd64.tar.gz'
   mode '0755'
