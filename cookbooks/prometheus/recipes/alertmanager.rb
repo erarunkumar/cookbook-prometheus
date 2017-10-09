@@ -122,7 +122,7 @@ when 'upstart'
   end
 else
   template '/etc/init.d/alertmanager' do
-    source 'alertmanager.init.erb'
+    source 'alertmanager.erb'
     owner 'root'
     group node['root_group']
     mode '0755'
