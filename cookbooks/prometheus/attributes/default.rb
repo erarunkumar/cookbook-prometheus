@@ -254,7 +254,7 @@ default['prometheus']['rule_filenames']                                         
 
 default['prometheus']['alertmanager']['notification'] = {}
 
-default['prometheus']['alertmanager']['smtp_smarthost'] = test 
-default['prometheus']['alertmanager']['smtp_from'] = test
-default['prometheus']['alertmanager']['smtp_auth_username'] = test
-default['prometheus']['alertmanager']['smtp_auth_password'] = test
+default['prometheus']['alertmanager']['smtp_smarthost'] = "smtp.gmail.com"
+default['prometheus']['alertmanager']['smtp_from'] = "default@gmail.com"
+default['prometheus']['alertmanager']['smtp_auth_username'] = "test"
+default['prometheus']['alertmanager']['smtp_auth_password'] = "test"
