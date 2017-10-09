@@ -225,7 +225,7 @@ default['prometheus']['alertmanager']['git_revision']                           
 
 # Location for Alertmanager pre-compiled binary.
 # Default for testing purposes
-default['prometheus']['alertmanager']['binary_url']                                       = 'https://github.com/prometheus/alertmanager/releases/download/v0.6.2/alertmanager-0.6.2.linux-amd64.tar.gz'
+default['prometheus']['alertmanager']['binary_url']                                       = "https://github.com/prometheus/alertmanager/releases/download/v#{node['prometheus']['alertmanager']['version']}/alertmanager-#{node['prometheus']['alertmanager']['version']}.linux-amd64.tar.gz"
 
 # Checksum for pre-compiled binary
 # Default for testing purposes

@@ -2,7 +2,11 @@
 	"prometheus": {
 		"init_style": "init.d",
 		"version": "1.8.0",
-		"checksum": "5028defde39c4b9975b6174a2dbf29983cbae9f18e9d8313d9187d4b1078da27" 
+		"checksum": "5028defde39c4b9975b6174a2dbf29983cbae9f18e9d8313d9187d4b1078da27",
+		"alertmanager": {
+			"version": "0.9.1",
+			"checksum": "407e0311689207b385fb1252f36d3c3119ae9a315e3eba205aaa69d576434ed7",
+		}
 	},
 	"prometheus_wrapper": {
 		"client_servers": [
