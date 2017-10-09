@@ -100,7 +100,7 @@ default['prometheus']['flags']["alertmanager.#{timeout_flag}"]                  
 default['prometheus']['flags']['alertmanager.notification-queue-capacity']                = 100
 
 # The URL of the alert manager to send notifications to.
-default['prometheus']['flags']['alertmanager.url']                                        = 'http://127.0.0.1/alert-manager/'
+default['prometheus']['flags']['alertmanager.url']                                        = 'http://127.0.0.1:9093'
 
 # Maximum number of queries executed concurrently.
 default['prometheus']['flags']['query.max-concurrency']                                   = 20
@@ -262,3 +262,6 @@ default['prometheus']['alertmanager']['pid'] = '/var/run/alertmanager.pid'
 default['prometheus']['alertmanager']['source']['user'] = 'prometheus'
 default['prometheus']['alertmanager']['source']['group'] = 'prometheus'
 default['prometheus']['alertmanager']['binary'] = "#{node['prometheus']['dir']}/alertmanager"
+default['prometheus']['alertmanager']['flags']['config.file'] = node['prometheus']['alertmanager']['config.file'] 
+default['prometheus']['alertmanager']['flags']['web.listen-address'] = ':9093'
+default['prometheus']['alertmanager']['flags']['storage.path'] = "#{node['prometheus']['dir']}/data"
