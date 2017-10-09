@@ -5,16 +5,18 @@
 		"checksum": "5028defde39c4b9975b6174a2dbf29983cbae9f18e9d8313d9187d4b1078da27" 
 	},
 	"prometheus_wrapper": {
-		"client_servers": [{
-			"name": "test",
-			"target": "10.0.0.1",
-			"scrape_interval": "20s"
-		},
-                {
-                        "name": "ankit",
-                        "target": "10.0.0.34",
-                        "scrape_interval": "20s"
-                }]
+		"client_servers": [
+			{
+				"name": "test",
+				"target": "10.0.0.1",
+				"scrape_interval": "20s"
+			},
+            {
+                "name": "ankit",
+                "target": "10.0.0.34",
+                "scrape_interval": "20s"
+            }
+        ]
 	},
-	"run_list": ["recipe[prometheus_wrapper]"]
+	"run_list": ["recipe[prometheus_wrapper],recipe[prometheus::alertmanager]"]
 }
