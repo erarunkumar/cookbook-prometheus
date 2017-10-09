@@ -258,3 +258,7 @@ default['prometheus']['alertmanager']['smtp_smarthost'] = "smtp.gmail.com"
 default['prometheus']['alertmanager']['smtp_from'] = "default@gmail.com"
 default['prometheus']['alertmanager']['smtp_auth_username'] = "test"
 default['prometheus']['alertmanager']['smtp_auth_password'] = "test"
+default['prometheus']['alertmanager']['pid'] = '/var/run/alertmanager.pid'
+default['prometheus']['alertmanager']['user'] = 'prometheus'
+default['prometheus']['alertmanager']['group'] = 'prometheus'
+default['prometheus']['alertmanager']['binary'] = "#{node['prometheus']['dir']}/alertmanager"
