@@ -3,10 +3,10 @@
 include_recipe "prometheus::use_lwrp"
 
 # Assumes service_name is an attribute of each node
-client_servers.each do |server|
-	prometheus_job server['service_name'] do
-  	  scrape_interval   "server['scrape_interval']"
-	  target            "server['target']#{node['prometheus']['flags']['web.listen-address']}"
+node['prometheus_wrapper']['client_servers'].each do |server|
+	prometheus_job "#{server['name']}" do
+  	  scrape_interval   "#{server['scrape_interval']}"
+	  target            "#{server['target']}#{node['prometheus']['flags']['web.listen-address']}"
 	  metrics_path      "#{node['prometheus']['flags']['web.telemetry-path']}"
 	end
 end
