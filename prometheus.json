@@ -6,7 +6,8 @@
 		"alertmanager": {
 			"version": "0.9.1",
 			"checksum": "407e0311689207b385fb1252f36d3c3119ae9a315e3eba205aaa69d576434ed7",
-			"install_method": "binary"
+			"install_method": "binary",
+			"init_style": "init.d"
 		}
 	},
 	"prometheus_wrapper": {
