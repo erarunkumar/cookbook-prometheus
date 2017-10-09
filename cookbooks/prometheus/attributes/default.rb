@@ -253,3 +253,8 @@ default['prometheus']['alertmanager']['config_template_name']                   
 default['prometheus']['rule_filenames']                                                   = nil
 
 default['prometheus']['alertmanager']['notification'] = {}
+
+default['prometheus']['alertmanager']['smtp_smarthost'] = test 
+default['prometheus']['alertmanager']['smtp_from'] = test
+default['prometheus']['alertmanager']['smtp_auth_username'] = test
+default['prometheus']['alertmanager']['smtp_auth_password'] = test
