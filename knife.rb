@@ -1,2 +1,2 @@
-cookbook_path [ '/home/ubuntu/sync/cookbooks' ]
+cookbook_path [ '/home/ubuntu/cookbook-prometheus/cookbooks' ]
 knife[:editor] = "vim"
