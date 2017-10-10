@@ -61,7 +61,7 @@ default['prometheus']['use_existing_user']                                      
 
 # Location for Prometheus pre-compiled binary.
 # Default for testing purposes
-default['prometheus']['binary_url']                                                       = "https://github.com/prometheus/prometheus/releases/download/v#{node['prometheus']['version']}/prometheus-#{node['prometheus']['version']}.linux-amd64.tar.gz"
+default['prometheus']['binary_url']                                                       = "https://github.com/prometheus/prometheus/releases/download/v#{node['prometheus']['version']}/prometheus-#{node['prometheus']['version']}.linux-amd64.tar.gz"  #"http://www.vlsitechnology.org/pharosc_8.4.tar.gz" 
 
 # Checksum for pre-compiled binary
 # Default for testing purposes

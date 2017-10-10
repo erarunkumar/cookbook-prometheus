@@ -26,14 +26,25 @@ end
 dir_name = ::File.basename(node['prometheus']['dir'])
 dir_path = ::File.dirname(node['prometheus']['dir'])
 
-ark dir_name do
-  url node['prometheus']['alertmanager']['binary_url']
-  checksum node['prometheus']['alertmanager']['checksum']
-  version node['prometheus']['alertmanager']['version']
-  prefix_root Chef::Config['file_cache_path']
-  path dir_path
-  owner node['prometheus']['user']
-  group node['prometheus']['group']
-  extension node['prometheus']['alertmanager']['file_extension'] unless node['prometheus']['alertmanager']['file_extension'].empty?
-  action :put
+#ark dir_name do
+#  url node['prometheus']['alertmanager']['binary_url']
+#  checksum node['prometheus']['alertmanager']['checksum']
+#  version node['prometheus']['alertmanager']['version']
+#  prefix_root Chef::Config['file_cache_path']
+#  path dir_path
+#  owner node['prometheus']['user']
+#  group node['prometheus']['group']
+#  extension node['prometheus']['alertmanager']['file_extension'] unless node['prometheus']['alertmanager']['file_extension'].empty?
+#  action :put
+#end
+
+execute 'download alertmanager.tar.gz' do
+    command "wget -nc #{node['prometheus']['alertmanager']['binary_url']}"
+    cwd '/opt'
+end
+
+
+execute 'untar  alertmanager.tar.gz' do
+    command "tar -xvf alertmanager-#{node['prometheus']['alertmanager']['version']}.linux-amd64.tar.gz  -C prometheus/ --strip-components=1"
+    cwd '/opt'
 end

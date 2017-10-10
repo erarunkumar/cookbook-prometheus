@@ -1,6 +1,6 @@
 
 action :create do
-  with_run_context :root do
+  #with_run_context :root do
     edit_resource(:template, config_file) do |new_resource|
       cookbook new_resource.source
       variables[:jobs] ||= {}
@@ -15,7 +15,7 @@ action :create do
 
       not_if { node['prometheus']['allow_external_config'] }
     end
-  end
+  #end
 end
 
 action :delete do
