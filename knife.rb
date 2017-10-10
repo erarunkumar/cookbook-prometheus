@@ -1,2 +1,2 @@
-cookbook_path [ '/vagrant/cookbook-prometheus/cookbooks' ]
+cookbook_path [ '/root/cookbook-prometheus/cookbooks' ]
 knife[:editor] = "vim"

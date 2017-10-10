@@ -45,13 +45,15 @@ dir_path = ::File.dirname(node['prometheus']['dir'])
 #    action :create_if_missing
 #end
 
-execute 'download prometheus.tar.gz' do
+execute "download prometheus-#{node['prometheus']['version']}.linux-amd64.tar.gz" do
     command "wget -nc #{node['prometheus']['binary_url']}"
     cwd '/opt'
+    not_if { File.exists?("/opt/prometheus-#{node['prometheus']['version']}.linux-amd64.tar.gz") }
 end
 
 
-execute 'untar  prometheus.tar.gz' do
+execute "untar prometheus-#{node['prometheus']['version']}.linux-amd64.tar.gz" do
     command "tar -xvf prometheus-#{node['prometheus']['version']}.linux-amd64.tar.gz -C prometheus/ --strip-components=1"
     cwd '/opt'
+    not_if { File.exists?("/opt/prometheus/prometheus") }
 end

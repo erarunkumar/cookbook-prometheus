@@ -38,13 +38,15 @@ dir_path = ::File.dirname(node['prometheus']['dir'])
 #  action :put
 #end
 
-execute 'download alertmanager.tar.gz' do
+execute "download #{node['prometheus']['alertmanager']['version']}.linux-amd64.tar.gz" do
     command "wget -nc #{node['prometheus']['alertmanager']['binary_url']}"
     cwd '/opt'
+    not_if { File.exists?("/opt/alertmanager-#{node['prometheus']['alertmanager']['version']}.linux-amd64.tar.gz") }
 end
 
 
 execute 'untar  alertmanager.tar.gz' do
     command "tar -xvf alertmanager-#{node['prometheus']['alertmanager']['version']}.linux-amd64.tar.gz  -C prometheus/ --strip-components=1"
     cwd '/opt'
+    not_if { File.exists?("/opt/prometheus/alertmanager") }
 end

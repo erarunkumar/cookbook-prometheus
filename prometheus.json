@@ -29,6 +29,7 @@
         ]
 	},
 	"run_list": [
-		"recipe[prometheus_wrapper]",
-		"recipe[prometheus::alertmanager]"]
+		"recipe[Prometheus-server::setup]",
+		"recipe[Prometheus-alertmanager::setup]"
+        ]
 }
